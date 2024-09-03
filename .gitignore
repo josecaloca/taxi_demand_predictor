@@ -1,2 +1,5 @@
 data/raw/*.parquet
 data/transformed/*.parquet
+
+notebooks/data/raw/*.parquet
+notebooks/data/transformed/*.parquet

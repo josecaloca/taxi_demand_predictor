@@ -2,7 +2,8 @@ name: hourly-taxi-demand-feature-pipeline
 
 on:
   schedule:
-  - cron: '0 * * * *'
+    - cron: '0 * * * *'  # Automatic trigger every hour
+  workflow_dispatch:  # Manual trigger
 
 jobs:
 
@@ -28,4 +29,3 @@ jobs:
         HOPSWORKS_PROJECT_NAME: ${{ secrets.HOPSWORKS_PROJECT_NAME }}
         HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
       run: poetry run jupyter nbconvert --to notebook --execute notebooks/12_feature_pipeline.ipynb
-  

@@ -9,20 +9,7 @@ from src.logger import get_logger
 
 logger = get_logger()
 
-@dataclass
-class FeatureGroupConfig:
-    name: str
-    version: int
-    description: str
-    primary_key: List[str]
-    event_time: str
-    online_enabled: Optional[bool] = False
-
-@dataclass
-class FeatureViewConfig:
-    name: str
-    version: int
-    feature_group: FeatureGroupConfig
+from src.feature_config import FeatureGroupConfig, FeatureViewConfig
 
 def get_feature_store() -> hsfs.feature_store.FeatureStore:
     """Connects to Hopsworks and returns a pointer to the feature store

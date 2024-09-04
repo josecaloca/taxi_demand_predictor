@@ -21,6 +21,8 @@ python-dotenv = "^1.0.1"
 hopsworks = "^3.7.0"
 numpy = "<2.0"
 scipy = "^1.10.1"
+streamlit = "^1.38.0"
+geopandas = "^1.0.1"
 
 
 

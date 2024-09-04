@@ -1,2 +1,4 @@
 data/raw/*.parquet
 data/transformed/*.parquet
+.env
+.venv

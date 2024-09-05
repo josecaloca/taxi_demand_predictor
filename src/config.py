@@ -58,6 +58,7 @@ FEATURE_GROUP_PREDICTIONS_METADATA = FeatureGroupConfig(
 #####################################################################################################################
 
 FEATURE_VIEW_MODEL_PREDICTIONS = 'model_predictions_feature_view'
+FEATURE_VIEW_MODEL_PREDICTIONS_VERSION = 1
 FEATURE_VIEW_PREDICTIONS_METADATA = FeatureViewConfig(
     name='model_predictions_feature_view',
     version=1,

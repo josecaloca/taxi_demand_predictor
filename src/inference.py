@@ -109,28 +109,6 @@ def load_model_from_registry():
     return model
 
 
-current_date = pd.to_datetime(datetime.utcnow(), utc=True).floor('H')
-from_pickup_hour=current_date - timedelta(hours=1)
-to_pickup_hour=current_date
-
-from src.config import FEATURE_VIEW_PREDICTIONS_METADATA
-from src.feature_store_api import get_or_create_feature_view
-
-predictions_fv = get_or_create_feature_view(FEATURE_VIEW_PREDICTIONS_METADATA)
-
-predictions = predictions_fv.get_batch_data(
-        start_time=from_pickup_hour - timedelta(days=1),
-        end_time=to_pickup_hour + timedelta(days=1)
-    )
-
-predictions['pickup_hour'] = pd.to_datetime(predictions['pickup_hour'], utc=True)
-from_pickup_hour = pd.to_datetime(from_pickup_hour, utc=True)
-to_pickup_hour = pd.to_datetime(to_pickup_hour, utc=True)
-
-predictions = predictions[predictions.pickup_hour.between(from_pickup_hour, to_pickup_hour)]
-
-
-
 def load_predictions_from_store(
     from_pickup_hour: datetime,
     to_pickup_hour: datetime

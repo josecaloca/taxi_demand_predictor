@@ -46,10 +46,10 @@ FEATURE_VIEW_METADATA = FeatureViewConfig(
 #####################################################################################################################
 
 FEATURE_GROUP_MODEL_PREDICTIONS = 'model_predictions_feature_group'
-FEATURE_GROUP_MODEL_PREDICTIONS_VERSION = 1
+FEATURE_GROUP_MODEL_PREDICTIONS_VERSION = 2
 FEATURE_GROUP_PREDICTIONS_METADATA = FeatureGroupConfig(
     name='model_predictions_feature_group',
-    version=1,
+    version=2,
     description='Predictions generate by our production model',
     primary_key=['pickup_location_id', 'pickup_ts'],
     event_time='pickup_ts',

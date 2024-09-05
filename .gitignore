@@ -2,4 +2,4 @@ data/raw/*.parquet
 data/transformed/*.parquet
 .env
 .venv
-.github/workflows/*.yml
+# .github/workflows/*.yml

@@ -36,12 +36,13 @@ def load_predictions_and_actual_values_from_store(
     predictions_fg = get_or_create_feature_group(FEATURE_GROUP_PREDICTIONS_METADATA)
     actuals_fg = get_or_create_feature_group(FEATURE_GROUP_METADATA)
 
-    # query to join the 2 features groups by `pickup_hour` and `pickup_location_id`
     from_ts = int(from_date.timestamp() * 1000)
     to_ts = int(to_date.timestamp() * 1000)
+
+    # Query to join the two feature groups by `pickup_ts` and `pickup_location_id`
     query = predictions_fg.select_all() \
         .join(actuals_fg.select(['pickup_location_id', 'pickup_ts', 'rides']),
-              on=['pickup_ts', 'pickup_location_id'], prefix=None) \
+            on=['pickup_ts', 'pickup_location_id'], prefix=None) \
         .filter(predictions_fg.pickup_ts >= from_ts) \
         .filter(predictions_fg.pickup_ts <= to_ts)
     
@@ -50,16 +51,51 @@ def load_predictions_and_actual_values_from_store(
     # create the feature view `config.FEATURE_VIEW_MONITORING` if it does not
     # exist yet
     feature_store = get_feature_store()
+
     try:
-        # create feature view as it does not exist yet
+        # Create feature view if it does not exist yet
         feature_store.create_feature_view(
             name=config.MONITORING_FV_NAME,
             version=config.MONITORING_FV_VERSION,
             query=query
         )
     except:
-        logger.info('Feature view already existed. Skip creation.')
+        logger.info('Feature view already exists. Skipping creation.')
+        
+    # ####################################################################################################
+    # ####################################################################################################
+    # predictions_fv = feature_store.get_feature_view(
+    #     name=config.FEATURE_VIEW_MODEL_PREDICTIONS,
+    #     version=config.FEATURE_VIEW_MODEL_PREDICTIONS_VERSION
+    # )
+    
+    # predictions_df = predictions_fv.get_batch_data(
+    #     start_time=from_date - timedelta(days=7),
+    #     end_time=to_date + timedelta(days=7),
+    # )
 
+    # predictions_df.pickup_hour.unique()
+    
+    # ####################################################################################################
+    # ####################################################################################################
+    
+    # actual_fv = feature_store.get_feature_view(
+    #     name=config.FEATURE_VIEW_NAME,
+    #     version=config.FEATURE_VIEW_VERSION
+    # )
+    
+    # actual_df = actual_fv.get_batch_data(
+    #     start_time=from_date - timedelta(days=7),
+    #     end_time=to_date + timedelta(days=7),
+    # )
+
+    # actual_df.pickup_hour.unique()
+    
+    # actual_df[actual_df.pickup_hour.isin(predictions_df.pickup_hour.unique())]["pickup_hour"].unique()
+    
+    # ####################################################################################################
+    # ####################################################################################################
+    
     # feature view
     monitoring_fv = feature_store.get_feature_view(
         name=config.MONITORING_FV_NAME,
@@ -72,7 +108,7 @@ def load_predictions_and_actual_values_from_store(
         start_time=from_date - timedelta(days=7),
         end_time=to_date + timedelta(days=7),
     )
-
+    
     # filter data to the time period we are interested in
     pickup_ts_from = int(from_date.timestamp() * 1000)
     pickup_ts_to = int(to_date.timestamp() * 1000)

@@ -23,9 +23,10 @@ except:
 # TODO: remove FEATURE_GROUP_NAME and FEATURE_GROUP_VERSION, and use FEATURE_GROUP_METADATA instead
 FEATURE_GROUP_NAME = 'time_series_hourly_feature_group'
 FEATURE_GROUP_VERSION = 1
+
 FEATURE_GROUP_METADATA = FeatureGroupConfig(
-    name='time_series_hourly_feature_group',
-    version=1,
+    name=FEATURE_GROUP_NAME,
+    version=FEATURE_GROUP_VERSION,
     description='Feature group with hourly time-series data of historical taxi rides',
     primary_key=['pickup_location_id', 'pickup_ts'],
     event_time='pickup_ts',
@@ -37,9 +38,10 @@ FEATURE_GROUP_METADATA = FeatureGroupConfig(
 # TODO: remove FEATURE_VIEW_NAME and FEATURE_VIEW_VERSION, and use FEATURE_VIEW_METADATA instead
 FEATURE_VIEW_NAME = 'time_series_hourly_feature_view'
 FEATURE_VIEW_VERSION = 1
+
 FEATURE_VIEW_METADATA = FeatureViewConfig(
-    name='time_series_hourly_feature_view',
-    version=1,
+    name=FEATURE_VIEW_NAME,
+    version=FEATURE_VIEW_VERSION,
     feature_group=FEATURE_GROUP_METADATA,
 )
 
@@ -47,9 +49,10 @@ FEATURE_VIEW_METADATA = FeatureViewConfig(
 
 FEATURE_GROUP_MODEL_PREDICTIONS = 'model_predictions_feature_group'
 FEATURE_GROUP_MODEL_PREDICTIONS_VERSION = 2
+
 FEATURE_GROUP_PREDICTIONS_METADATA = FeatureGroupConfig(
-    name='model_predictions_feature_group',
-    version=2,
+    name=FEATURE_GROUP_MODEL_PREDICTIONS,
+    version=FEATURE_GROUP_MODEL_PREDICTIONS_VERSION,
     description='Predictions generate by our production model',
     primary_key=['pickup_location_id', 'pickup_ts'],
     event_time='pickup_ts',
@@ -59,9 +62,10 @@ FEATURE_GROUP_PREDICTIONS_METADATA = FeatureGroupConfig(
 
 FEATURE_VIEW_MODEL_PREDICTIONS = 'model_predictions_feature_view'
 FEATURE_VIEW_MODEL_PREDICTIONS_VERSION = 1
+
 FEATURE_VIEW_PREDICTIONS_METADATA = FeatureViewConfig(
-    name='model_predictions_feature_view',
-    version=1,
+    name=FEATURE_VIEW_MODEL_PREDICTIONS,
+    version=FEATURE_VIEW_MODEL_PREDICTIONS_VERSION,
     feature_group=FEATURE_GROUP_PREDICTIONS_METADATA,
 )
 

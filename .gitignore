@@ -2,4 +2,5 @@ data/raw/*.parquet
 data/transformed/*.parquet
 .env
 .venv
-# .github/workflows/*.yml
+.github/workflows/features_pipeline_notebook.yml
+.github/workflows/inference_pipeline_notebook.yml

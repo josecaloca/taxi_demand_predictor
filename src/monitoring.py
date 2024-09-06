@@ -64,6 +64,15 @@ def load_predictions_and_actual_values_from_store(
         
     # ####################################################################################################
     # ####################################################################################################
+    
+    # feature_group_metadata = FEATURE_GROUP_PREDICTIONS_METADATA
+    # feature_group_metadata.name
+    # feature_group_metadata.version
+    # feature_group_metadata.description
+    # feature_group_metadata.primary_key
+    # feature_group_metadata.event_time
+    # feature_group_metadata.online_enabled
+    
     # predictions_fv = feature_store.get_feature_view(
     #     name=config.FEATURE_VIEW_MODEL_PREDICTIONS,
     #     version=config.FEATURE_VIEW_MODEL_PREDICTIONS_VERSION
@@ -76,8 +85,8 @@ def load_predictions_and_actual_values_from_store(
 
     # predictions_df.pickup_hour.unique()
     
-    # ####################################################################################################
-    # ####################################################################################################
+    # # ####################################################################################################
+    # # ####################################################################################################
     
     # actual_fv = feature_store.get_feature_view(
     #     name=config.FEATURE_VIEW_NAME,
@@ -108,6 +117,8 @@ def load_predictions_and_actual_values_from_store(
         start_time=from_date - timedelta(days=7),
         end_time=to_date + timedelta(days=7),
     )
+    
+    monitoring_df.pickup_hour.unique()
     
     # filter data to the time period we are interested in
     pickup_ts_from = int(from_date.timestamp() * 1000)

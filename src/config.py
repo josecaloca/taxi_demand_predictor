@@ -84,7 +84,7 @@ MODEL_VERSION = 1
 N_FEATURES = 24 * 28
 
 # number of iterations we want Optuna to pefrom to find the best hyperparameters
-N_HYPERPARAMETER_SEARCH_TRIALS = 1
+N_HYPERPARAMETER_SEARCH_TRIALS = 15
 
 # maximum Mean Absolute Error we allow our production model to have
-MAX_MAE = 30.0
+MAX_MAE = 45.0

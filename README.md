@@ -56,8 +56,8 @@
 
 ## Wanna see it in action?
 
-- [Live Dashboard with model predictions](https://taxi-demand-predictor.streamlit.app/)
-- [Live Dashboard with model monitoring ](https://taxi-demand-predictor-monitoring.streamlit.app/)
+- [Live Dashboard with model predictions](https://taxi-demand-nyc.streamlit.app/)
+- [Live Dashboard with model monitoring ](https://taxi-demand-model-monitoring.streamlit.app/)
 
 ## Extra set up for Mac M1/M2 chips
 
